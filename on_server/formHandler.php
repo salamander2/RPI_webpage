@@ -19,6 +19,8 @@ $data = onlyAlphaNumeric($data);
 #debug:
 #echo "data=".$data;
 
+#IMPORTANT: the command file MUST BE already there and have the correct permissions
+# This PHP does not have the authority to create a file
 $file = fopen($cmdfile, 'w');
 fwrite($file, $data);
 fclose($file);
@@ -26,7 +28,7 @@ fclose($file);
 # now redirect back to GWC1.php
 #header("Location: GWC1.php");
 header("Location: {$_SERVER['HTTP_REFERER']}");
-die("something is wrong");
+die("Something is wrong. formHandler.php");
 
 
 //This condenses multiple white spaces down to a single space (I think)

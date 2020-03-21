@@ -4,9 +4,9 @@
    It also has a form where you can type in some text and have is saved to a file on the server.
 */
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+#ini_set('display_errors', 1);
+#ini_set('display_startup_errors', 1);
+#error_reporting(E_ALL);
 
 include 'config.php';
 $error_message = '';
@@ -39,7 +39,8 @@ if (strpos($RPIdata,'Y') !== false) $Y=1;
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="refresh" content="5">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<meta http-equiv="refresh" content="10">
 <title>Display and update data</title>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
@@ -64,6 +65,19 @@ input {
   font-family:sans-serif;
   font-style:italic;
 }
+/*
+@media screen and (min-width: 601px) {
+  .small {
+    font-size: 80px;
+  }
+}
+*/
+
+@media screen and (max-width: 600px) {
+  .small {
+    font-size: 90%;
+  }
+}
 .error {
   color:red;
   font-weight:bold;
@@ -71,6 +85,11 @@ input {
   border:4px double orange;
   background:#555;
   display:inline;
+}
+.warning {
+  font-family:arial;
+  color:red;
+  font-weight:bold;
 }
 .btn {
   margin:5px;
@@ -105,7 +124,7 @@ input {
 Only one line of text will be saved.<br>
 Only A-Z 0-9 and spaces are allowed.</p>
 </div>
-<p style="font-family:Arial;font-weight:bold;color:red";>WARNING: If the shutdown command remains in place, <br>then the Raspberry Pi will shutdown as soon as it connects to this webpage.</p>
+<p class="warning">WARNING: If the shutdown command remains in place, <br>then the Raspberry Pi will shutdown as soon as it connects to this webpage.</p>
 <p></p>
 <hr>
 
