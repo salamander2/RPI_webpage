@@ -129,7 +129,7 @@ Only A-Z 0-9 and spaces are allowed.</p>
 <hr>
 
 <div>
-<h3>Status of <s>LEDs</s> Switches on PI</h3>
+<h3>Status of Switches on PI</h3>
 
 <span class="btn <?php if($R==1) echo 'on';?>">R</span>
 <span class="btn <?php if($B==1) echo 'on';?>">B</span>
@@ -140,7 +140,10 @@ Only A-Z 0-9 and spaces are allowed.</p>
 <p></p>
 <hr>
 <h3>Buttons to Control LEDS</h3>
-<p>Note, this is just an extension of the command above. You could just type in 'RGB' to turn on those LEDS.</p>
+<p>It's possible to put buttons here to turn on and off the LEDs. They would just be extensions of the command above. <br>
+You can just type RGB to turn on those LEDs.</p>
+<hr>
+<p></p>
 </body>
 </html>
 
