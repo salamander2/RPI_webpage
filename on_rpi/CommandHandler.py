@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-__author__ = 'griffin'
-
 #----------------- IMPORTS -----------------
 import RPi.GPIO as GPIO
 #import time, thread, subprocess
@@ -42,11 +40,16 @@ DELAY=10	#in seconds
 #------------------- end setup ----------------
 
 #------------------ FUNCTIONS ------------------
+
+# run a Linux command on the command line and get the output.
 def runCmd(cmd):
     p = Popen(cmd, shell=True, stdout=PIPE)
     output = p.communicate()[0]
     return output
+# subprocess.call('sudo shutdown -h now', shell=True)
+# time = datetime.now().strftime('%b %d %H:%M:%S')
 
+# turn all LEDs ON or OFF depending whether the boolean is true or false.
 def allOnOff(b):
     if (b) :
         GPIO.output(L1,GPIO.HIGH)
@@ -62,9 +65,9 @@ def allOnOff(b):
 def getData():
     FETCHCMD="wget -qO- "+DATAURL
     result= runCmd(FETCHCMD).rstrip('\n')
-    #print result
     return result
 
+# this parses the data and sets the LEDs ON or OFF
 def parseData(text):
     allOnOff(False)
     if('Y' in text): GPIO.output(L1,GPIO.HIGH)
@@ -79,6 +82,7 @@ def checkSwitches():
     if (GPIO.input(SW3) == 1): n+= 4
     if (GPIO.input(SW4) == 1): n+= 8
 
+	#use SW1 to run the program faster - more responsive to checking webpage
     if (GPIO.input(SW1) == 1): DELAY=2
     else: DELAY=10
 
@@ -96,17 +100,22 @@ def sendData(data):
     runCmd(cmd)
     return str
 
-
-# subprocess.call('sudo shutdown -h now', shell=True)
-#  time = datetime.now().strftime('%b %d %H:%M:%S')
+#returns True or False if that bit is set in a number x.
 def testBit(x, bit):
     n = x & 1 << bit
     return(n != 0)
 
+
+#------------------ end functions ------------------
+
+#------------------ MAIN PROGRAM ---------------
 def main():
     allOnOff(True)
     while 1:
         data=getData();
+
+		# this part could be improved. Maybe some list of commands and what they do.
+        # Python is good at lists
         if ("SHUTDOWN" in data): 
             cmd="sudo shutdown -h now"
             runCmd(cmd)
@@ -117,13 +126,12 @@ def main():
         parseData(data)
         n = checkSwitches()
         sendData(n)
-        #if (n > 0) : print "n="+str(n)
 
         sleep(DELAY)
 
 try:
     main()
-except KeyboardInterrupt:
-    allOnOff(False);
+except KeyboardInterrupt:   #^C to exit
+    allOnOff(False)
     GPIO.cleanup()
-    print("\b\b  \nBye")
+    print("\b\b  \nBye")	# remove the ^C from the display.
