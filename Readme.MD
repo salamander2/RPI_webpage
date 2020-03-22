@@ -7,3 +7,19 @@ The intent is to use the internet to control the RPI and also for the RPI to sen
 If the Raspberry Pi were connected to sensors or a robot and a camera, then it would be useful to be able to control things remotely, or sense the temperature at home ...
 
 There is no security to this yet. The webpage would need a password (the simplest is using .htaccess) or anyone could control the Raspberry Pi.
+
+--------
+## Layout of this project
+![Layout of this project](https://raw.githubusercontent.com/salamander2/RPI_webpage/master/images/PI_1.JPG)
+
+## LEDs turned on by webpage
+![LEDs turned on by webpage](https://raw.githubusercontent.com/salamander2/RPI_webpage/master/images/PI_2_LEDS.JPG)
+
+## Switches
+![Switches](https://raw.githubusercontent.com/salamander2/RPI_webpage/master/images/PI_3_switches.JPG)
+
+The switches are just wires that connect to either ground or +3.3V. +3.3V is ON.    
+All you have to do is move the end of the jumper wire from ground (-) or 0V, to +3.3V.
+
+## Webpage controller
+![webpage](https://raw.githubusercontent.com/salamander2/RPI_webpage/master/images/PI_4_webpage.JPG)
