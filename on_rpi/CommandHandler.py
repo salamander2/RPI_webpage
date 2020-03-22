@@ -34,8 +34,9 @@ GPIO.setup(SW4, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 #GPIO.add_event_detect(SW1, GPIO.RISING, callback=changeMode, bouncetime=300)
 
 #... global variables ...
-DATAURL="http://192.168.192.13/~adelaide/rpi/cmd.txt"
-UPDATEURL="http://192.168.192.13/~adelaide/rpi/updateData.php"
+IP="http://quarkphysics.ca/RPI/"
+DATAURL=IP+"cmd.txt"
+UPDATEURL=IP+"updateData.php"
 DELAY=10	#in seconds
 #------------------- end setup ----------------
 
@@ -63,7 +64,7 @@ def allOnOff(b):
         GPIO.output(L4,GPIO.LOW)
 
 def getData():
-    FETCHCMD="wget -qO- "+DATAURL
+    FETCHCMD="wget -qO- --no-cache "+DATAURL
     result= runCmd(FETCHCMD).rstrip('\n')
     return result
 
