@@ -23,3 +23,6 @@ All you have to do is move the end of the jumper wire from ground (-) or 0V, to 
 
 ## Webpage controller
 ![webpage](https://raw.githubusercontent.com/salamander2/RPI_webpage/master/images/PI_4_webpage.JPG)
+
+The command BR means turn on Blue and Red LEDs. It would still work if you typed BEAR or RUBE or ORBIT. The letters looked for are RGBY or the words SHUTDOWN or RESTART.    
+The switches shown as ON are the two jumpers on the Raspberry Pi breadboard that have been connected to the 3.3V rail.
